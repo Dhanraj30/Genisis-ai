@@ -1,0 +1,17 @@
+import api from 'a/trpc/react';  
+import React from 'react';  
+import {useLocalStorage} from 'usehooks-ts'
+
+const useProject = () => {  
+  const { data: projects } = api.project.getProjects.useQuery();  
+  const [projectId, setProjectId] = useLocalStorage('genisis-projectId', ' ')
+  const project = projects?.find(project => project.id === projectId)
+  return {  
+    projects ,
+    project,
+    projectId,
+    setProjectId
+  };  
+}  
+
+export default useProject;
