@@ -83,7 +83,7 @@ export function AppSidebar() {
   </SidebarGroupLabel>
   <SidebarGroupContent>
     <SidebarMenu>
-      {projects.map(project => {
+      {projects?.map(project => {
         return (
           <SidebarMenuItem key={project.name}>
             <SidebarMenuButton asChild>
@@ -109,6 +109,7 @@ export function AppSidebar() {
       <SidebarMenuItem>
             <Link href='/create'>
                 <Button size='sm' variant={'outline'} className='w-fit'>
+                  {/*<Button className='w-fit sm'></Button>*/}
                     <Plus />
                     Create Project
                 </Button>

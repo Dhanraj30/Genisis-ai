@@ -1,5 +1,6 @@
 'use client'
 import { Button } from '@/components/ui/button'
+import useRefetch from '@/hooks/use-refetch'
 import { api } from '@/trpc/react'
 import { Input } from 'postcss'
 import React from 'react'
@@ -15,6 +16,7 @@ type FormInput = {
 const CreatePage = () => {
     const { register, handleSubmit } = useForm<FormInput>()
     const createProject = api.project.createProject.useMutation()
+    const refetch = useRefetch()
 
     function onSubmit(data: FormInput) {  
     window.alert(JSON.stringify(data, null, 2))  
@@ -25,7 +27,8 @@ const CreatePage = () => {
     },  
     {  
         onSuccess: () => {  
-            toast.success("Project created successfully.")  
+            toast.success("Project created successfully.") 
+            refetch() 
             reset()  
         },  
         onError: () => {  
